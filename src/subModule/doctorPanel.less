@@ -1,0 +1,89 @@
+.box {
+    background-color: white;
+    border-radius: 14px;
+    box-shadow: 0px 7px 0 0 rgb(70 70 70 / 1%), 0 6px 0 0 rgb(65 65 65 / 1%), 0 5px 0 0 rgb(60 60 60 / 1%), 0 4px 0 0 rgb(55 55 55 / 1%), 0 3px 0 0 rgb(50 50 50 / 1%), 0 2px 0 0 rgb(50 50 50 / 1%), 0 1px 0 0 rgb(45 45 45 / 1%);
+}
+.patients-panel {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    float: right;
+    width: 285px;
+    height: 100%;
+    margin: 10px 0 0 24px;
+    padding: 30px 28px;
+    text-align: left;
+    h1 {
+        font-size: 25px;
+    }
+    .waiting-patient-box {
+        position: relative;
+        width: 229px;
+        height: 80px;
+        margin: 14px 0;
+        background-color: #EEF9FE;
+        display: flex;
+        align-items: center;
+        padding: 30px;
+        border-radius: 12px;
+        .avatar-box {
+            width: 40px;
+            height: 40px;
+            background-color: #C8E1EC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            img {
+              width: 40px;
+              height: 40px;
+            }
+        }
+        .user-info {
+            line-height: 18px;
+        }
+        .patient-name {
+            color: #5977AC;
+            font-weight: 800;
+            font-size: 16px;
+        }
+        .call-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: #529CFF;
+            align-items: center;
+            justify-content: center;
+            display: none;
+            cursor: pointer;
+            img {
+                width: 14px;
+                height: 14px;
+            }
+            &:hover {
+                background-color: #1f68c7;
+                box-shadow: 2px 7px 10px 0 rgba(251, 251, 251, 0.1), 2px 11px 11px 0 rgb(0 0 0 / 10%), 2px 6px 8px 0 rgb(0 0 0 / 8%), 2px 5px 8px 0 rgb(252 22 0 / 5%);
+            }
+        }
+        &:hover {
+            background-color: #2784FF;
+            box-shadow: 2px 7px 10px 0 rgb(0 0 0 / 10%), 2px 11px 11px 0 rgb(0 0 0 / 10%), 2px 6px 8px 0 rgb(0 0 0 / 8%), 2px 5px 8px 0 rgb(252 22 0 / 5%);
+            .avatar-box {
+                background-color: #2279ED;  
+            }
+            .patient-name {
+                color: white;
+            }
+            .des {
+                color: #a5ccff;
+            }
+            .call-btn {
+                display: flex;
+            }
+        }
+    }
+
+    
+}
