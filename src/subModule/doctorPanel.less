@@ -29,10 +29,6 @@
             width: 40px;
             height: 40px;
             background-color: #C8E1EC;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
             img {
               width: 40px;
               height: 40px;
@@ -84,6 +80,54 @@
             }
         }
     }
+}
 
-    
+.object-patient-panel {
+    flex: 1;
+    margin: 10px 0 0 24px;
+
+    .base-info {
+        height: 136px;
+        display: flex;
+        .inner-blue {
+            flex-shrink:0;
+            float: left;
+            width: 290px;
+            height: 100%;
+            background-color: #257FF4;
+            padding: 26px;
+            .upper {
+                margin-bottom: 8px;
+                display: flex;
+                align-items: center;
+                .user-info {
+                    font-size: 19px;
+                    line-height: 23px;
+                    margin-left: 18px;
+                    :first-child { font-weight: bold;}
+                    .des {
+                        font-size: 14px;
+                        color: #B8DEFF;
+                    }
+                }
+                .avatar-box {
+                    width: 60px;
+                    height: 60px;
+                    background-color: #C8E1EC;
+                    img {
+                        width: 56px;
+                        height: 56px;
+                    }
+                }
+            }
+            
+            span {
+                color: #f5f5f5; 
+            }
+        }
+
+        .ant-descriptions-row > td {
+            padding-bottom: 12px;
+        }
+    }
 }
