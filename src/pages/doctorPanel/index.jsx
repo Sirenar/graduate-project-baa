@@ -11,8 +11,6 @@ const { Text } = Typography;
 const EllipsisMiddle = ({ suffixCount, children }) => {
   const start = children.slice(0, children.length - suffixCount).trim();
   const suffix = children.slice(-suffixCount).trim();
-  console.log('start: ', start);
-  console.log('suffix: ', suffix);
   return (
     <Text style={{ maxWidth: '98%' }} ellipsis={{ suffix }}>
       {start}
@@ -51,7 +49,7 @@ function DoctorPanel() {
     <div style={{display: 'flex'}}>
       <div className='object-patient-panel'>
         <div className='box base-info'>
-          <div className='box inner-blue'>
+          <div className='dark-box inner-blue'>
             <div className='upper'>
               <div className="avatar-box">
                 <img src={patientAvatar}></img>

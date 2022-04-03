@@ -1,8 +1,10 @@
 import './App.less';
+import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 
-import DoctorPanel from './pages/doctorPanel'
+import DoctorPanel from './pages/doctorPanel';
+import StatisticsPanel from './pages/statistics';
 import LogoIcon from './img/logo.png';
 import userAvatar from './img/avatar.png';
 
@@ -11,6 +13,20 @@ const { Header, Content, Sider } = Layout;
 
 
 function App() {
+  const [contentKey, changeContent] = useState('1');
+
+  const onChangeMenu = ({key}) => {
+    changeContent(key);
+  }
+
+  const ResponsiveContent = () => {
+    switch(contentKey){
+      case('1'):
+      return (<DoctorPanel></DoctorPanel>);
+      case('3'):
+      return(<StatisticsPanel></StatisticsPanel>);
+    }
+  }
   return (
     <div className="App">
   <Layout>
@@ -33,21 +49,18 @@ function App() {
       <Sider width={180} className="site-layout-background">
         <Menu
           mode="inline"
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
+          defaultSelectedKeys={['3']}
+          defaultOpenKeys={['sub2']}
           style={{ height: '100%', borderRight: 0 }}
+          onClick={onChangeMenu}
         >
-          <SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
-            <Menu.Item key="1">option1</Menu.Item>
-            <Menu.Item key="2">option2</Menu.Item>
-            <Menu.Item key="3">option3</Menu.Item>
-            <Menu.Item key="4">option4</Menu.Item>
+          <SubMenu key="sub1" icon={<UserOutlined />} title="医生界面">
+            <Menu.Item key="1">诊间接诊</Menu.Item>
           </SubMenu>
-          <SubMenu key="sub2" icon={<LaptopOutlined />} title="subnav 2">
-            <Menu.Item key="5">option5</Menu.Item>
-            <Menu.Item key="6">option6</Menu.Item>
-            <Menu.Item key="7">option7</Menu.Item>
-            <Menu.Item key="8">option8</Menu.Item>
+          <SubMenu key="sub2" icon={<LaptopOutlined />} title="数据管理">
+            <Menu.Item key="3">数据统计</Menu.Item>
+            <Menu.Item key="4">病例数据</Menu.Item>
+            <Menu.Item key="5">模型训练</Menu.Item>
           </SubMenu>
           <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
             <Menu.Item key="9">option9</Menu.Item>
@@ -65,7 +78,7 @@ function App() {
             minHeight: 580,
           }}
         >
-          <DoctorPanel></DoctorPanel>
+          <ResponsiveContent></ResponsiveContent>
         </Content>
       </Layout>
     </Layout>

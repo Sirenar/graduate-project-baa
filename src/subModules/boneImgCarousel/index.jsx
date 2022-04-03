@@ -6,9 +6,7 @@ import { Carousel } from 'antd';
 import boneImg from '../../img/1391.png';
 
 function BoneImgCarousel() {
-    const fnGetimg = () => {
-
-    }
+    const fnGetimg = () => {}
 
     const [imgLoaded, changeImgLoaded] = useState(true);
     const imgList = [boneImg, boneImg, boneImg, boneImg];
