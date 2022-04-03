@@ -2,7 +2,7 @@ import './App.less';
 import { Layout, Menu } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 
-import DoctorPanel from './subModule/doctorPanel'
+import DoctorPanel from './pages/doctorPanel'
 import LogoIcon from './img/logo.png';
 import userAvatar from './img/avatar.png';
 
@@ -30,7 +30,7 @@ function App() {
       </div>
     </Header>
     <Layout>
-      <Sider width={200} className="site-layout-background">
+      <Sider width={180} className="site-layout-background">
         <Menu
           mode="inline"
           defaultSelectedKeys={['1']}
