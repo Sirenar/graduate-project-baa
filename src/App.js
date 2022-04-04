@@ -5,6 +5,7 @@ import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/
 
 import DoctorPanel from './pages/doctorPanel';
 import StatisticsPanel from './pages/statistics';
+import Records from './pages/dataManage';
 import LogoIcon from './img/logo.png';
 import userAvatar from './img/avatar.png';
 
@@ -25,6 +26,8 @@ function App() {
       return (<DoctorPanel></DoctorPanel>);
       case('3'):
       return(<StatisticsPanel></StatisticsPanel>);
+      case('4'):
+      return(<Records></Records>);
     }
   }
   return (

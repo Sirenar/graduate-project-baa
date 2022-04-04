@@ -20,63 +20,108 @@ const AgeColumn = () => {
 
   const data = [
     {
-      "age": "<3岁",
-      "value": 27,
+      "age": "≤3岁",
+      "value": 47,
       "type": "GHD"
     },
     {
-      "age": "3-6岁(含3岁)",
-      "value": 279,
+      "age": "4-5岁",
+      "value": 129,
       "type": "GHD"
     },
     {
-      "age": "6-9岁(含6岁)",
-      "value": 250,
+      "age": "6-7岁",
+      "value": 173,
       "type": "GHD"
     },
     {
-      "age": "9-16岁(含9岁)",
-      "value": 332,
+      "age": "8-9岁",
+      "value": 207,
       "type": "GHD"
     },
     {
-      "age": "<3岁",
-      "value": 15,
+      "age": "10-11岁",
+      "value": 146,
+      "type": "GHD"
+    },
+    {
+      "age": "12-13岁",
+      "value": 101,
+      "type": "GHD"
+    },
+    {
+      "age": "14-16岁",
+      "value": 85,
+      "type": "GHD"
+    },
+    {
+      "age": "≤3岁",
+      "value": 23,
       "type": "ISS"
     },
     {
-      "age": "3-6岁(含3岁)",
-      "value": 140,
+      "age": "4-5岁",
+      "value": 71,
       "type": "ISS"
     },
     {
-      "age": "6-9岁(含6岁)",
-      "value": 123,
+      "age": "6-7岁",
+      "value": 106,
       "type": "ISS"
     },
     {
-      "age": "9-16岁(含9岁)",
-      "value": 242,
+      "age": "8-9岁",
+      "value": 134,
       "type": "ISS"
     },
     {
-        "age": "<3岁",
-        "value": 9,
+      "age": "10-11岁",
+      "value": 98,
+      "type": "ISS"
+    },
+    {
+      "age": "12-13岁",
+      "value": 57,
+      "type": "ISS"
+    },
+    {
+      "age": "14-16岁",
+      "value": 31,
+      "type": "ISS"
+    },
+    {
+        "age": "≤3岁",
+        "value": 18,
         "type": "FSS"
       },
       {
-        "age": "3-6岁(含3岁)",
-        "value": 64,
-        "type": "FSS"
-      },
-      {
-        "age": "6-9岁(含6岁)",
+        "age": "4-5岁",
         "value": 54,
         "type": "FSS"
       },
       {
-        "age": "9-16岁(含9岁)",
-        "value": 95,
+        "age": "6-7岁",
+        "value": 43,
+        "type": "FSS"
+      },
+      {
+        "age": "8-9岁",
+        "value": 35,
+        "type": "FSS"
+      },
+      {
+        "age": "10-11岁",
+        "value": 31,
+        "type": "FSS"
+      },
+      {
+        "age": "12-13岁",
+        "value": 29,
+        "type": "FSS"
+      },
+      {
+        "age": "14-16岁",
+        "value": 12,
         "type": "FSS"
       },
   ];
