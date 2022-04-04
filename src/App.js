@@ -17,6 +17,7 @@ function App() {
   const [contentKey, changeContent] = useState('1');
 
   const onChangeMenu = ({key}) => {
+    console.log('key', key)
     changeContent(key);
   }
 
@@ -52,14 +53,14 @@ function App() {
       <Sider width={180} className="site-layout-background">
         <Menu
           mode="inline"
-          defaultSelectedKeys={['3']}
+          defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub2']}
           style={{ height: '100%', borderRight: 0 }}
           onClick={onChangeMenu}
         >
-          <SubMenu key="sub1" icon={<UserOutlined />} title="医生界面">
-            <Menu.Item key="1">诊间接诊</Menu.Item>
-          </SubMenu>
+          <Menu.Item key="1" icon={<UserOutlined />} >
+            诊间接诊
+          </Menu.Item>
           <SubMenu key="sub2" icon={<LaptopOutlined />} title="数据管理">
             <Menu.Item key="3">数据统计</Menu.Item>
             <Menu.Item key="4">病例数据</Menu.Item>

@@ -5,6 +5,9 @@ import { Tooltip, Descriptions, Typography } from 'antd';
 import BoneImgCarousel from '../../subModules/boneImgCarousel';
 import patientAvatar from '../../img/patient-avatar.png';
 import callBtn from '../../img/callbtn.png';
+import BulletMetric from '../../subModules/bulletMetric';
+import RadarMetric from '../../subModules/radarMetric';
+import HistoryRecords from '../../subModules/historyRecords';
 
 const { Text } = Typography;
 
@@ -67,11 +70,13 @@ function DoctorPanel() {
           </div>
           <Descriptions column={2} style={{padding: '24px'}}>
             <Descriptions.Item labelStyle={{color: '#8F929D'}} label="就诊刷卡">AA021096X</Descriptions.Item>
+            <Descriptions.Item labelStyle={{color: '#8F929D'}} label="过去病史"> 
+                <HistoryRecords></HistoryRecords>
+            </Descriptions.Item>
+            <Descriptions.Item labelStyle={{color: '#8F929D'}} label="病人性质">智慧医保（职工）</Descriptions.Item>
             <Descriptions.Item labelStyle={{color: '#8F929D'}} label="工作单位"> 
                 重庆坤约文化有限公司
             </Descriptions.Item>
-            <Descriptions.Item labelStyle={{color: '#8F929D'}} label="病人性质">智慧医保（职工）</Descriptions.Item>
-            <Descriptions.Item labelStyle={{color: '#8F929D'}} label="智慧医疗">市民卡</Descriptions.Item>
             <Descriptions.Item labelStyle={{color: '#8F929D'}} label="联系地址">
               <EllipsisMiddle suffixCount={10} >
                 1810000000（Tel）重庆市沙坪坝区大学城区四川美术学院虎溪校区造型艺术综合教学楼
@@ -79,8 +84,12 @@ function DoctorPanel() {
             </Descriptions.Item>
           </Descriptions>
         </div>
-        <div className='box lab-info'>1</div>
-        <div className='box lab-info'>2</div>
+        <div className='box lab-info'>
+          <BulletMetric></BulletMetric>
+        </div>
+        <div className='box lab-info'>
+          <RadarMetric></RadarMetric>
+        </div>
         <div className='box img-info'>
           <BoneImgCarousel></BoneImgCarousel>
         </div>
