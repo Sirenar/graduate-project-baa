@@ -1,6 +1,7 @@
 import './index.less';
 import React, { useState } from 'react';
-import { Tooltip, Descriptions, Typography } from 'antd';
+import { Tooltip, Descriptions, Typography, Menu, Dropdown, Input, Form, Button, Radio  } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 import BoneImgCarousel from '../../subModules/boneImgCarousel';
 import patientAvatar from '../../img/patient-avatar.png';
@@ -8,6 +9,8 @@ import callBtn from '../../img/callbtn.png';
 import BulletMetric from '../../subModules/bulletMetric';
 import RadarMetric from '../../subModules/radarMetric';
 import HistoryRecords from '../../subModules/historyRecords';
+
+import { labData, metrics } from '../../data';
 
 const { Text } = Typography;
 
@@ -21,16 +24,37 @@ const EllipsisMiddle = ({ suffixCount, children }) => {
   );
 };
 
-
 function DoctorPanel() {
 
-  const [fileList, changeFileList] = useState([]);
+  const [metricIndex, changeMetricIndex] = useState(0);
+  const [currPatient, changeCurrentPatient] = useState(0);
 
-  const PatientBox = ({list}) => {
-    list = list || [];
-    return list.map(patient => {
+  const changeMetric = index => () => {
+    changeMetricIndex(index);
+  }
+
+  const changePatient = index => () => {
+    changeCurrentPatient(index);
+  }
+
+  const labMenu = (
+    <Menu>
+      {
+        metrics.map((item, index) => (
+          <Menu.Item key={index} disabled={!item.available}> 
+            <a target="_blank" rel="noopener noreferrer" onClick={changeMetric(index)}>
+              {item.title}
+            </a>
+          </Menu.Item>
+        ))
+      }
+    </Menu>
+  );
+
+  const PatientBox = ({list = []}) => {
+    return list.map((patient, index) => {
       return (
-        <div className='waiting-patient-box'>
+        <div className={currPatient==index? 'waiting-patient-box-active': 'waiting-patient-box'} onClick={changePatient(index)}>
           <div className="avatar-box">
             <img src={patientAvatar}></img>
           </div>
@@ -47,6 +71,8 @@ function DoctorPanel() {
       )
     })
   }
+
+  const [form] = Form.useForm();
 
   return (
     <div style={{display: 'flex'}}>
@@ -85,19 +111,75 @@ function DoctorPanel() {
           </Descriptions>
         </div>
         <div className='box lab-info'>
-          <BulletMetric></BulletMetric>
+          <div className='lab-title'>
+            <h3 className='important'>实验室检查</h3>
+            <Dropdown overlay={labMenu}>
+              <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                {metrics[metricIndex].title} <DownOutlined />
+              </a>
+            </Dropdown>
+          </div>
+          {
+            labData[metricIndex].map(item => (
+              <div className='metric-box'>
+                 <BulletMetric data={[item]}></BulletMetric>
+              </div>
+            ))
+          }
         </div>
-        <div className='box lab-info'>
-          <RadarMetric></RadarMetric>
+        <div className='box lab-overall'>
+          <div className='lab-title'>
+            <h3 className='important'>数据雷达</h3>
+          </div>
+          <div style={{height: '240px'}}>
+            <RadarMetric></RadarMetric>
+          </div>
         </div>
         <div className='box img-info'>
           <BoneImgCarousel></BoneImgCarousel>
+        </div>
+        <div className='box accessment-info'>
+          <div className='lab-title'>
+            <h3 className='important'>骨龄预测值</h3>
+            <span className='des'>abc模型</span>
+          </div>
+          <div className='access-result'>
+            <span className='access-age'>8</span>
+            <span className='des'>周岁4月</span>
+          </div>
+        </div>
+        <div className='box feedback'>
+          <div className='lab-title'>
+            <h3 className='important'>诊断结果</h3>
+            <span className='des'>您的意见将用于回馈算法</span>
+          </div>
+          <Form
+              form={form}
+          >
+            <Form.Item label="矮小症类型" name="layout" initialValue={'ghd'}>
+              <Radio.Group>
+                <Radio.Button value="ghd">GHD</Radio.Button>
+                <Radio.Button value="iss">ISS</Radio.Button>
+                <Radio.Button value="fss">FSS</Radio.Button>
+                <Radio.Button value="not">非矮小症</Radio.Button>
+              </Radio.Group>
+            </Form.Item>
+            <Form.Item label="骨龄" initialValue='8周岁4月'>
+              <Input placeholder="input placeholder"/>
+            </Form.Item>
+            <Form.Item label="意见">
+              <Input placeholder="input placeholder" />
+            </Form.Item>
+            {/* <Form.Item>
+              <Button type="primary">Submit</Button>
+            </Form.Item> */}
+          </Form>
         </div>
       </div>
       <div className='box patients-panel'>
         <h1 className='important'>候诊病人</h1>
         <span className='des'>今天上午</span>
-        <PatientBox list={[1,2, 3, 4, 5]}></PatientBox>
+        <PatientBox list={[1,2, 3, 4, 5, 6, 7, 8]}></PatientBox>
       </div>
     </div>
   );

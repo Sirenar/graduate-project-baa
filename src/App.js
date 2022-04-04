@@ -17,7 +17,6 @@ function App() {
   const [contentKey, changeContent] = useState('1');
 
   const onChangeMenu = ({key}) => {
-    console.log('key', key)
     changeContent(key);
   }
 

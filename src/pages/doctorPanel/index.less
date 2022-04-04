@@ -7,7 +7,7 @@
     margin: 10px 0 0 24px;
     padding: 30px 28px;
     text-align: left;
-    .waiting-patient-box {
+    .waiting-patient-box, .waiting-patient-box-active {
         position: relative;
         width: 229px;
         height: 80px;
@@ -73,6 +73,23 @@
             }
         }
     }
+
+    .waiting-patient-box-active {
+        background-color: #2784FF;
+        box-shadow: 2px 7px 10px 0 rgb(0 0 0 / 10%), 2px 11px 11px 0 rgb(0 0 0 / 10%), 2px 6px 8px 0 rgb(0 0 0 / 8%), 2px 5px 8px 0 rgb(252 22 0 / 5%);
+        .avatar-box {
+            background-color: #2279ED;  
+        }
+        .patient-name {
+            color: white;
+        }
+        .des {
+            color: #a5ccff;
+        }
+        .call-btn {
+            display: flex;
+        }
+    }
 }
 
 .object-patient-panel {
@@ -86,6 +103,7 @@
         width: 100%;
         height: 136px;
         display: flex;
+        align-items: flex-start;
         .inner-blue {
             flex-shrink:0;
             float: left;
@@ -128,15 +146,60 @@
         }
     }
 
-    .lab-info {
+    .lab-info, .lab-overall, .accessment-info, .feedback {
         margin-top: 24px;
         width: calc(50% - 144px);
+        padding: 24px;
+        padding-bottom: 14px;
+        .lab-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 34px;
+
+            h3 {
+                line-height: 34px;
+                margin: 0;
+            }
+        }
+        .metric-box {
+            height: 50px;
+        }
+    }
+
+    .lab-info {
+        min-height: 320px;
+    }
+    .lab-overall, .img-info {
         height: 320px;
     }
 
     .img-info {
         margin-top: 24px;
         width: 240px;
-        height: 320px;
+    }
+
+    .accessment-info {
+        padding-bottom: 6px;
+        margin-right: 24px;
+        height: 140px;
+        .access-result {
+            display: flex;
+            align-items: baseline;
+            padding-top: 10px;
+            .access-age {
+                font-family: Courier New;
+                padding-right: 6px;
+                font-size: 42px;
+            }
+        }
+    }
+    .feedback {
+        flex: 1;
+        form {
+            padding: 0 8px;
+            text-align: left;
+            margin-top: 16px;
+        }
     }
 }

@@ -36,6 +36,7 @@ const RadarMetric = () => {
     },
   ];
   const config = {
+    height: 320,
     data: data.map((d) => ({ ...d, star: Math.sqrt(d.star) })),
     xField: 'name',
     yField: 'star',

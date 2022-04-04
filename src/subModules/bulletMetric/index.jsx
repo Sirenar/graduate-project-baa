@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Bullet } from '@ant-design/plots';
 
-const BulletMetric = data => {
-  data = [
-    {
-      title: '满意度',
-      ranges: [100],
-      measures: [80],
-      target: [10, 85],
-    },
-  ];
+const BulletMetric = ({data}) => {
+    console.log(data);
+  data = data || [];
+  const { measures, target } = data[0];
+  console.log('measures: ', measures);
+  console.log('target: ', target);
+  let measureColor = '#89DC93';
+  if (measures < target[0]) measureColor = '#FEC837';
+  else if (measures > target[1]) measureColor =  '#F58A61';
   const config = {
     data,
     measureField: 'measures',
@@ -18,42 +18,15 @@ const BulletMetric = data => {
     xField: 'title',
     color: {
       range: '#f0efff',
-      measure: '#5B8FF9',
-      target: '#3D76DD',
+      measure: measureColor,
+      target: '#d9d9d9',
     },
     xAxis: {
       line: null,
     },
     yAxis: false,
     // 自定义 legend
-    legend: {
-      custom: true,
-      position: 'bottom',
-      items: [
-        {
-          value: '实际值',
-          name: '实际值',
-          marker: {
-            symbol: 'square',
-            style: {
-              fill: '#5B8FF9',
-              r: 5,
-            },
-          },
-        },
-        {
-          value: '目标值',
-          name: '目标值',
-          marker: {
-            symbol: 'line',
-            style: {
-              stroke: '#3D76DD',
-              r: 5,
-            },
-          },
-        },
-      ],
-    },
+    legend: false,
   };
   return <Bullet {...config} />;
 };
