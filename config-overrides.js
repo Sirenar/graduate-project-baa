@@ -1,5 +1,4 @@
-// const { override, fixBabelImports, addLessLoader, addPostcssPlugins } = require('customize-cra');
-const { override, fixBabelImports, addPostcssPlugins } = require('customize-cra');
+const { override } = require('customize-cra');
 const addLessLoader = require("customize-cra-less-loader");
 
 module.exports = override(
@@ -18,7 +17,7 @@ module.exports = override(
       }
     }
   }),
-  // addPostcssPlugins({
-  //   postcssOptions: {}
-  // })
+  // addWebpackAlias({
+  //   ["react"]: path.resolve(__dirname, "node_modules/react"),
+  // }),
 )

@@ -1,33 +1,8 @@
 import './index.less';
-import React, { useState } from 'react';
-import { Table, Input, InputNumber, Popconfirm, Form, Typography, Tag, Space, Badge } from 'antd';
-
-import img from '../../img/1391.png';
-const originData = [];
-
-const now = new Date();
-for (let i = 0; i < 100; i++) {
-  originData.push({
-    key: i.toString(),
-    id: '1'+ Math.ceil(Math.random()*10000),
-    name: `Edrward`,
-    age: Math.ceil(Math.random()*16)+'岁'+ Math.ceil(Math.random()*12)+'月', 
-    treatDate: now.getFullYear() + '/' + (now.getMonth()+1) + '/' + now.getDate(),
-    gender: ['male', 'female'][i%2],
-    symptom: ['GHD', 'GHD', 'FSS', 'GHD', 'ISS', 'FSS'][i%6],
-    patriHeight: 164 + Math.ceil(Math.random()*15),
-    matriHeight: 150 + Math.ceil(Math.random()*14),
-    initHeight: (90 + Math.random()*40).toFixed(1),
-    initWeight: 10 + Math.ceil(Math.random()*35),
-    averageGrowth: (Math.random()).toFixed(3),
-    GH1: (Math.random()*3).toFixed(2),
-    GH2: (Math.random()*4).toFixed(2),
-    GH3: (Math.random()*6).toFixed(2),
-    GH4: (Math.random()*7).toFixed(2),
-    GH5: (Math.random()*6).toFixed(2),
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing '
-  });
-}
+import React, { useState, useEffect } from 'react';
+import { Table, Input, InputNumber, Popconfirm, Form, Typography, Tag, Space, Badge, message, Button } from 'antd';
+import { getDataList, editDataListEntry, deleteDataListEntryById, getDataListExpandInfoById } from '../../api/getDataList';
+import { expandColumn } from '../../data/listColumn';
 
 const EditableCell = ({
   editing,
@@ -66,16 +41,40 @@ const EditableCell = ({
 
 const Records = () => {
   const [form] = Form.useForm();
-  const [data, setData] = useState(originData);
+  const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
+
+  useEffect(()=>{
+    getDataList().then(res => {
+      setData(res.list);
+    });
+    
+  }, [])
+
+
+  let expandData = [];
+  getDataListExpandInfoById().then(res => {
+    console.log("get expand data: ", res);
+    expandData = res.list;
+  });
+
+  const ExpandedRowRender = (record, index, indent, expanded) => {
+    console.log(record, index, indent, expanded);
+    
+    return (
+      <>
+        <Table columns={expandColumn} dataSource={expandData} pagination={false}  />
+        <Button onClick={handleAdd} type="primary" style={{ marginTop: 16 }}>
+          Add a row
+        </Button>
+      </>
+    ) 
+  }
 
   const isEditing = (record) => record.key === editingKey;
 
   const handleEdit = (record) => {
     form.setFieldsValue({
-      name: '',
-      age: '',
-      address: '',
       ...record,
     });
     setEditingKey(record.key);
@@ -93,6 +92,17 @@ const Records = () => {
 
       if (index > -1) {
         const item = newData[index];
+        // 传递给后端
+        console.log('修改数据: ', row);
+        await editDataListEntry(row)
+        .then(res => {
+          message.success('修改成功');
+        })
+        .catch(err => {
+          message.error('修改失败');
+        })
+  
+        // 替换数据
         newData.splice(index, 1, { ...item, ...row });
         setData(newData);
         setEditingKey('');
@@ -106,16 +116,24 @@ const Records = () => {
     }
   };
 
-  const handleDelete = key => {
-    console.log(key)
-    // form.setFieldsValue({
-    //   name: '',
-    //   age: '',
-    //   address: '',
-    //   ...record,
-    // });
-    // setEditingKey(record.key);
+  const handleDelete = async(key) => {
+    console.log(key);
+    deleteDataListEntryById(key)
+    .then(res => {
+      message.success('删除成功');
+      const newData = [...data];
+      const index = newData.findIndex((item) => key === item.key);
+      newData.splice(index, 1);
+      setData(newData);
+    })
+    .catch(err => {
+      message.error('删除失败');
+    })
   };
+
+  const handleAdd = () => {
+
+  }
 
   const columns = [
     {
@@ -152,7 +170,7 @@ const Records = () => {
         dataIndex: 'age',
         key: 'age',
         editable: true,
-        width: '100px',
+        width: '110px',
         align: 'center',
         // defaultSortOrder: 'descend',
         sorter: (a, b) => a.age - b.age,
@@ -169,6 +187,7 @@ const Records = () => {
         title: '适应症',
         key: 'symptom',
         dataIndex: 'symptom',
+        editable: true,
         width: '100px',
         align: 'center',
         render: symptom => {
@@ -187,6 +206,7 @@ const Records = () => {
         title: '父身高',
         key: 'patriHeight',
         dataIndex: 'patriHeight',
+        editable: true,
         width: '100px',
         align: 'center',
     },
@@ -194,6 +214,7 @@ const Records = () => {
         title: '母身高',
         key: 'matriHeight',
         dataIndex: 'matriHeight',
+        editable: true,
         width: '90px',
         align: 'center',
     },
@@ -201,6 +222,7 @@ const Records = () => {
         title: '首次身高(cm)',
         key: 'initHeight',
         dataIndex: 'initHeight',
+        editable: true,
         width: '100px',
         align: 'center',
     },
@@ -208,6 +230,7 @@ const Records = () => {
         title: '首次体重(kg)',
         key: 'initWeight',
         dataIndex: 'initWeight',
+        editable: true,
         width: '100px',
         align: 'center',
     },
@@ -215,6 +238,7 @@ const Records = () => {
         title: '平均增长速率(cm/月)',
         key: 'averageGrowth',
         dataIndex: 'averageGrowth',
+        editable: true,
         width: '120px',
         align: 'center',
     },
@@ -222,6 +246,7 @@ const Records = () => {
         title: 'GH1\n(ng/ml)',
         key: 'GH1',
         dataIndex: 'GH1',
+        editable: true,
         width: '90px',
         align: 'center',
     },
@@ -229,6 +254,7 @@ const Records = () => {
         title: 'GH2\n(ng/ml)',
         key: 'GH2',
         dataIndex: 'GH2',
+        editable: true,
         width: '90px',
         align: 'center',
     },
@@ -236,20 +262,23 @@ const Records = () => {
         title: 'GH3\n(ng/ml)',
         key: 'GH3',
         dataIndex: 'GH3',
+        editable: true,
         width: '90px',
         align: 'center',
     },
     {
-        title: 'GH4(ng/ml)',
+        title: 'GH4\n(ng/ml)',
         key: 'GH4',
         dataIndex: 'GH4',
+        editable: true,
         width: '90px',
         align: 'center',
     },
     {
-        title: 'GH5(ng/ml)',
+        title: 'GH5\n(ng/ml)',
         key: 'GH5',
         dataIndex: 'GH5',
+        editable: true,
         width: '90px',
         align: 'center',
     },
@@ -281,62 +310,15 @@ const Records = () => {
               修改
             </Typography.Link>
             <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-              <a>删除</a>
+              <Typography.Link disabled={editingKey !== ''}>
+                删除
+              </Typography.Link>
             </Popconfirm>
           </Space>
         );
       },
     },
   ];
-
-  const expandedRowRender = () => {
-    const columns = [
-      { title: '摄片日期', dataIndex: 'shotDate', key: 'shotDate', align: 'center',},
-      { 
-          title: '摄片图像', 
-          dataIndex: 'shotImg', 
-          key: 'shotImg', 
-          align: 'center',
-          render: img => (
-              <img style={{width: '80px', height: '106px'}} src={img}></img>
-          )
-      },
-      {
-        title: 'Bone Age',
-        key: 'ba',
-        align: 'center',
-        render: () => (
-          <span>
-            <Badge status="success" />
-            12.8
-          </span>
-        ),
-      },
-      {
-        title: '操作',
-        dataIndex: 'operation',
-        key: 'operation',
-        render: () => (
-          <Space size="middle">
-            <a>修改</a>
-            <a>删除</a>
-          </Space>
-        ),
-      },
-    ];
-    const data = [];
-    const age = Math.ceil(Math.random()*12);
-    const year = 2010 + Math.ceil(Math.random()*10);
-    for (let i = 0; i < 3; ++i) {
-      data.push({
-        key: i,
-        shotDate: `${year+i}-${Math.ceil(Math.random()*12)}-${Math.ceil(Math.random()*31)}`,
-        shotImg: img,
-        ba: age+(i+Math.random()*2).toFixed(1),
-      });
-    }
-    return <Table columns={columns} dataSource={data} pagination={false}  />;
-  }
 
 
   const mergedColumns = columns.map((col) => {
@@ -370,11 +352,17 @@ const Records = () => {
           onChange: cancel,
         }}
         scroll={{ x: 1500 }}
-        expandable={{
-            expandedRowRender
-            // expandedRowRender: record => <p style={{ margin: 0 }}>诊断主诉：{record.description}</p>,
+        expandable={
+            // {expandedRowRender: record => <p style={{ margin: 0 }}>诊断主诉：{record.description}</p>,}
+            // expandable
+            {
+              expandRowByClick: true,
+              // onExpand: getExpandData,
+              expandedRowRender: ExpandedRowRender
+            }
+            // 
             // rowExpandable: record => record.description !== '',
-          }}
+          }
       />
     </Form>
   );

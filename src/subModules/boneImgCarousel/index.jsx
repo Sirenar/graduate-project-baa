@@ -5,14 +5,15 @@ import { Carousel } from 'antd';
 
 import boneImg from '../../img/1391.png';
 
-function BoneImgCarousel() {
+function BoneImgCarousel(props) {
+    const { clickHandler } = props;
     const fnGetimg = () => {}
 
     const [imgLoaded, changeImgLoaded] = useState(true);
     const imgList = [boneImg, boneImg, boneImg, boneImg];
 
     return (
-        <div className='bone-banner'>
+        <div className='bone-banner' onClick={clickHandler()}>
             {
                 imgLoaded && <Carousel>
                     {

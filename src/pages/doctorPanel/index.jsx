@@ -9,6 +9,8 @@ import callBtn from '../../img/callbtn.png';
 import BulletMetric from '../../subModules/bulletMetric';
 import RadarMetric from '../../subModules/radarMetric';
 import HistoryRecords from '../../subModules/historyRecords';
+import ImgEditorPanel from "../../subModules/imgEditor";
+
 
 import { labData, metrics } from '../../data';
 
@@ -28,6 +30,7 @@ function DoctorPanel() {
 
   const [metricIndex, changeMetricIndex] = useState(0);
   const [currPatient, changeCurrentPatient] = useState(0);
+  const [showImgViewPanel, changeShowImgViewPanel] = useState(false);
 
   const changeMetric = index => () => {
     changeMetricIndex(index);
@@ -36,6 +39,15 @@ function DoctorPanel() {
   const changePatient = index => () => {
     changeCurrentPatient(index);
   }
+
+  const clickBoneImgHandler = img => () => {
+    changeShowImgViewPanel(true);
+  }
+
+  const closeImgViewPanel = () => {
+    changeShowImgViewPanel(false);
+  }
+
 
   const labMenu = (
     <Menu>
@@ -136,7 +148,7 @@ function DoctorPanel() {
           </div>
         </div>
         <div className='box img-info'>
-          <BoneImgCarousel></BoneImgCarousel>
+          <BoneImgCarousel clickHandler={img => clickBoneImgHandler(img)}></BoneImgCarousel>
         </div>
         <div className='box accessment-info'>
           <div className='lab-title'>
@@ -179,7 +191,10 @@ function DoctorPanel() {
       <div className='box patients-panel'>
         <h1 className='important'>候诊病人</h1>
         <span className='des'>今天上午</span>
-        <PatientBox list={[1,2, 3, 4, 5, 6, 7, 8]}></PatientBox>
+        <PatientBox list={[1,2, 3, 4, 5, 6, 7]}></PatientBox>
+      </div>
+      <div className={`img-view-panel-wrapper ${showImgViewPanel? 'active' : ''}`} onClick={ closeImgViewPanel }>
+        <ImgEditorPanel></ImgEditorPanel>
       </div>
     </div>
   );

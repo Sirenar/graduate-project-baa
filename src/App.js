@@ -1,11 +1,13 @@
 import './App.less';
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+import { UserOutlined, LaptopOutlined, SettingOutlined } from '@ant-design/icons';
 
 import DoctorPanel from './pages/doctorPanel';
 import StatisticsPanel from './pages/statistics';
 import Records from './pages/dataManage';
+import ModelTraining from './pages/modelTraining';
+import SystemManage from './pages/systemManage';
 import LogoIcon from './img/logo.png';
 import userAvatar from './img/avatar.png';
 
@@ -28,10 +30,15 @@ function App() {
       return(<StatisticsPanel></StatisticsPanel>);
       case('4'):
       return(<Records></Records>);
+      case('5'):
+      return(<ModelTraining></ModelTraining>)
+      case('6'):
+      return(<SystemManage></SystemManage>)
     }
   }
   return (
     <div className="App">
+
   <Layout>
     <Header className="header">
       <div className="logo" >
@@ -65,12 +72,9 @@ function App() {
             <Menu.Item key="4">病例数据</Menu.Item>
             <Menu.Item key="5">模型训练</Menu.Item>
           </SubMenu>
-          <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
-            <Menu.Item key="9">option9</Menu.Item>
-            <Menu.Item key="10">option10</Menu.Item>
-            <Menu.Item key="11">option11</Menu.Item>
-            <Menu.Item key="12">option12</Menu.Item>
-          </SubMenu>
+          <Menu.Item key="6" icon={<SettingOutlined />} >
+            系统设置
+          </Menu.Item>
         </Menu>
       </Sider>
       <Layout style={{ padding: '0 0 24px 24px' }}>

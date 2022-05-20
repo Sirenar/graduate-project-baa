@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Pie } from '@ant-design/plots';
 
-const GenderPie = () => {
+const ContributionPie = () => {
     const data = [
       {
-        type: '男生',
-        value: 842,
+        type: 'A模型',
+        value: 8,
       },
       {
-        type: '女生',
-        value: 866,
+        type: 'B模型',
+        value: 3,
       },
+      {
+        type: 'C模型',
+        value: 2,
+      }
     ];
     const config = {
       width: 200,
@@ -30,7 +34,7 @@ const GenderPie = () => {
           fontSize: 14,
         },
       },
-      color: ['#6395f8', '#f276a0'],
+      color: ['#6395f8', '#f276a0', '#657798'],
       interactions: [
         {
           type: 'element-selected',
@@ -44,7 +48,7 @@ const GenderPie = () => {
             style: {
                 fontSize: '14px',
             },
-            content: '总人数'
+            content: '总贡献数'
         },
         content: {
           style: {
@@ -63,4 +67,4 @@ const GenderPie = () => {
     return <Pie {...config} />;
   };
 
-export default GenderPie;
+export default ContributionPie;

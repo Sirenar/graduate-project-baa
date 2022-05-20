@@ -5,8 +5,6 @@ const BulletMetric = ({data}) => {
     console.log(data);
   data = data || [];
   const { measures, target } = data[0];
-  console.log('measures: ', measures);
-  console.log('target: ', target);
   let measureColor = '#89DC93';
   if (measures < target[0]) measureColor = '#FEC837';
   else if (measures > target[1]) measureColor =  '#F58A61';

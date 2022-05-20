@@ -1,12 +1,35 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './index.css';
 import App from './App';
+import Login from './Login';
+// import { LoginContext } from './context';
+
 import reportWebVitals from './reportWebVitals';
+
+const context = {
+  initLogin: {
+    loginStatus: false
+  },
+  login: {
+    loginStatus: false
+  }
+}
+
+const Context = createContext(context.initLogin);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Context.Provider value={context.login}>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/home" component={App} />
+          <Route path="/login" component={Login} />
+          <Redirect path="/" to="/login" exact />
+        </Switch>
+      </BrowserRouter>
+    </Context.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

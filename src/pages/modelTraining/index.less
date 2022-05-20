@@ -1,0 +1,96 @@
+.training {
+    display: flex;
+    flex-wrap: wrap;
+    .training-overview-graph {
+        flex-grow:1;
+        margin-right: 24px;
+        .line {
+            margin: 40px;
+            height: 300px;
+            position: relative;
+    
+            .graph-label {
+                position: absolute;
+                top: -10px;
+                left: 20px;
+            }
+        }
+    }
+    .training-overview-data {
+        float: right;
+        width: 240px;
+        .contribution {
+            width: 220px;
+            height: 260px;
+            .pie {
+                padding: 0 24px;
+                margin-top: -8px;
+            }
+            h3 {
+                margin-top: 24px;
+            }
+        }
+
+        .create {
+            margin-top: 20px;
+            width: 220px;
+            height: 100px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: bold;
+            color: #666;
+
+            .label {
+                font-size: 18px;
+            }
+            .create-btn {
+                border-color: #6d7e9d;
+                color: #6d7e9d;
+            }
+        }
+    }
+}
+
+.model-panel {
+    width: 98%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .model {
+        margin-top: 24px;
+        width: 260px;
+        height: 144px;
+        padding: 24px;
+        text-align: left;
+        .model-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #999;
+
+            .info-box {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+
+    .avatar-box {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20%;
+        cursor: pointer;
+        background-color: #eee;
+
+        img {
+            width: 40px;
+            height: 40px;
+        }
+      }
+}
