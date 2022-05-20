@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "./static/css/main.2c6d2202.css",
+    "main.js": "./static/js/main.4ef4ee55.js",
+    "static/js/787.e18903d1.chunk.js": "./static/js/787.e18903d1.chunk.js",
+    "static/media/1391.png": "./static/media/1391.6533281fffbcf6fb532b.png",
+    "static/media/healthcare-logo.png": "./static/media/healthcare-logo.190a518f5567ad4fbb22.png",
+    "static/media/login-img.png": "./static/media/login-img.99229f07d49cfb5bdc1e.png",
+    "static/media/avatar1.png": "./static/media/avatar1.73e93bb8ed8e235a8afa.png",
+    "static/media/avatar3.png": "./static/media/avatar3.fbdfed47365a72543233.png",
+    "static/media/avatar2.png": "./static/media/avatar2.d6ac45f96d97dd8632eb.png",
+    "static/media/avatar.png": "./static/media/avatar.753242cfdb77162ed422.png",
+    "index.html": "./index.html",
+    "main.2c6d2202.css.map": "./static/css/main.2c6d2202.css.map",
+    "main.4ef4ee55.js.map": "./static/js/main.4ef4ee55.js.map",
+    "787.e18903d1.chunk.js.map": "./static/js/787.e18903d1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2c6d2202.css",
+    "static/js/main.4ef4ee55.js"
+  ]
+}
