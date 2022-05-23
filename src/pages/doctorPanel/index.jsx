@@ -1,6 +1,6 @@
 import './index.less';
 import React, { useState } from 'react';
-import { Tooltip, Descriptions, Typography, Menu, Dropdown, Input, Form, Button, Radio  } from 'antd';
+import { Tooltip, Descriptions, Typography, Menu, Dropdown, Input, Form, Radio  } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
 import BoneImgCarousel from '../../subModules/boneImgCarousel';
@@ -10,7 +10,6 @@ import BulletMetric from '../../subModules/bulletMetric';
 import RadarMetric from '../../subModules/radarMetric';
 import HistoryRecords from '../../subModules/historyRecords';
 import ImgEditorPanel from "../../subModules/imgEditor";
-
 
 import { labData, metrics } from '../../data';
 

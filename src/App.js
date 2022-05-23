@@ -22,6 +22,10 @@ function App() {
     changeContent(key);
   }
 
+  const toUserPage = () => {
+    changeContent('6');
+  }
+
   const ResponsiveContent = () => {
     switch(contentKey){
       case('1'):
@@ -46,7 +50,7 @@ function App() {
           Medical Dashboard
       </div>
       <div className="user">
-        <div className="avatar-box">
+        <div  onClick={toUserPage} className="avatar-box">
           <img src={userAvatar}></img>
         </div>
         <div className='user-info'>

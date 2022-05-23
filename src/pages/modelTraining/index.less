@@ -94,3 +94,103 @@
         }
       }
 }
+
+.create-model {
+    .ant-modal-header {
+        height: 76px;
+        display: flex;
+        align-items: center;
+        padding: 0 46px;
+        
+    }
+
+    .model-body {
+        width: 100%;
+        display: flex;
+        padding: 0 22px 40px;
+        .choosen-data-box {
+            flex-grow: 1;
+            border: 3px dashed #eee;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            img {
+                width: 140px;
+                height: 112px;
+            }
+            h3 {
+                color: #777;
+            }
+
+            .des {
+                color: #aaa;
+                line-height: 20px;
+            }
+        }
+
+        .options-box {
+            padding: 0 24px;
+            width: calc(50%);
+            color: #333;
+            
+            .ant-menu {
+                color: #aaa;
+                margin-bottom: 30px;
+            }
+            
+            .ant-menu-item::after {
+                right: 0;
+                left: 0;  
+            }
+            
+            .ant-menu-item-active::after {
+                border-bottom: 2px solid transparent;
+            }
+            .ant-menu-item-selected {
+                color: #333;
+                &:after {
+                    border-bottom: 2px solid #6b9af8;
+                }
+            }
+
+            .label {
+                line-height: 34px;
+                font-weight: bold;
+            }
+
+            .lower-option {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 22px;
+            }
+
+            .training-option {
+                display: flex;
+                margin-top: 28px;
+            }
+
+            .notification-option {
+                padding: 34px 0;
+                line-height: 30px;
+            }
+
+            .submit-btn {
+                width: 170px;
+                height: 40px;
+                background-color: #6b9af8;
+            }
+
+            .cancel-btn {
+                color: #666;
+            }
+
+            .tutorial {
+                color: #666;
+                font-size: 12px;
+                line-height: 26px;
+                
+            }
+        }
+    }
+}

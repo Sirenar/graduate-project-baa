@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Login from './Login';
@@ -22,13 +22,13 @@ const Context = createContext(context.initLogin);
 ReactDOM.render(
   <React.StrictMode>
     <Context.Provider value={context.login}>
-      <BrowserRouter>
+      <Router>
         <Switch>
           <Route path="/home" component={App} />
           <Route path="/login" component={Login} />
           <Redirect path="/" to="/login" exact />
         </Switch>
-      </BrowserRouter>
+      </Router>
     </Context.Provider>
   </React.StrictMode>,
   document.getElementById('root')
