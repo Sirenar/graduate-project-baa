@@ -81,15 +81,19 @@
             h3 {
                 font-weight: 400;
                 color: #a5abe7;
+                margin-bottom: 20px;
             }
             .input-wrapper {
-                flex-direction: column;
-                .label {
-                    width: 300px;
-                    margin-top: 20px;
-                    padding-left: 4px;
-                    line-height: 30px;
+                margin: auto;
+                width: 300px;
+                .ant-form-item-label > label {
                     color: #d0d4f2;
+                    &::before {
+                        content: '';
+                    }
+                }
+                .ant-form-item-label {
+                    line-height: 1.1715;
                 }
                 .ant-input-prefix {
                     margin-right: 8px;
@@ -111,7 +115,7 @@
             }
 
             .login-btn {
-                margin-top: 80px;
+                margin-top: 56px;
                 width: 300px;
                 background-color: #fa607f;
                 border: none;

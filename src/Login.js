@@ -1,16 +1,26 @@
 import './Login.less';
-import React, { useEffect } from 'react';
-import { Layout, Button, Input } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Layout, Button, Input, Form } from 'antd';
 import { UserOutlined, EyeInvisibleOutlined, EyeTwoTone, LockOutlined } from '@ant-design/icons';
 import LogoIcon from './img/logo.png';
 import LoginIllustration from './img/login-img.png';
+import { login } from './api/userAction';
 
 const { Header } = Layout;
 
 function Login() {
 
-    const onLogin = () => {
+    const [form] = Form.useForm();
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const onLogin = values => {
+        setIsLoading(true);
+        console.log('Received values of form: ', values);
+        login(values).then(res => {
+            console.log('Login result: ', res);
+        })
         
     }
 
@@ -48,25 +58,40 @@ function Login() {
                     <h1>Welcome !</h1>
                     <h3>Sign in to your account</h3>
                     <div className='input-wrapper'>
-                        <div className='label'>Username</div>
-                        <Input className='input-box'
-                            placeholder="Enter your username"
-                            prefix={<UserOutlined style={{ color: '#d0d4f2' }} />}
-                        />
-                        <div className='label'>Password</div>
-                        <Input.Password className='input-box'
-                            placeholder="Input password"
-                            prefix={<LockOutlined style={{ color: '#d0d4f2' }} />}
-                            iconRender={visible => (visible ? <EyeTwoTone style={{ color: '#d0d4f2' }} /> : <EyeInvisibleOutlined style={{ color: '#d0d4f2' }} />)}
-                        />
+                    <Form form={form} name="nest-messages" layout="vertical" onFinish={onLogin}>
+                        <Form.Item
+                            name="username"
+                            label="Username"
+                            rules={[{ required: true, message: 'Please input your Username!' }]}
+                        >
+                            <Input className='input-box'
+                                placeholder="Enter your username"
+                                prefix={<UserOutlined style={{ color: '#d0d4f2' }} />}
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            name="password"
+                            label="Password"
+                            rules={[{ required: true, message: 'Please input your Password!' }]}
+                        >
+                            <Input.Password className='input-box'
+                                placeholder="Input password"
+                                prefix={<LockOutlined style={{ color: '#d0d4f2' }} />}
+                                iconRender={visible => (visible ? <EyeTwoTone style={{ color: '#d0d4f2' }} /> : <EyeInvisibleOutlined style={{ color: '#d0d4f2' }} />)}
+                            />
+                        </Form.Item>
+                         <Form.Item>
+                            <Button className='login-btn' type="primary" shape="round" size='large' htmlType="submit" loading={isLoading}>Login</Button>
+                        </Form.Item>
+                    </Form>
                     </div>
-                    <Link
+                    {/* <Link
                         to={{
                             pathname: '/home',
                         }}
                     >
                     <Button className='login-btn' type="primary" shape="round" size='large' onClick={onLogin}>Login</Button>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div>

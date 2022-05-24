@@ -1,24 +1,34 @@
 import axios from "axios";
+import qs from 'qs';
 import './mock';
 
  axios.defaults.timeout = 100000;
-//  axios.defaults.baseURL = "http://test.mediastack.cn/";
+//  axios.defaults.baseURL = "http://1.15.53.152:9999";
  
  /**
   * http request 拦截器
   */
- axios.interceptors.request.use(
-   (config) => {
-     config.data = JSON.stringify(config.data);
-     config.headers = {
-       "Content-Type": "application/json",
-     };
-     return config;
-   },
-   (error) => {
-     return Promise.reject(error);
-   }
- );
+//  axios.interceptors.request.use(
+//    (config) => {
+//      console.log('config', config);
+//      const {data, method} = config;
+//       if(method.toLowerCase() === 'post' && typeof data === 'object'){
+//         config.data = qs.stringify(data);
+//         config.headers = {
+//           'Content-Type': 'application/x-www-form-urlencoded'
+//         };
+//       } else {
+//         config.data = JSON.stringify(data);
+//         config.headers = {
+//           "Content-Type": "application/json",
+//         };
+//       }
+//      return config;
+//    },
+//    (error) => {
+//      return Promise.reject(error);
+//    }
+//  );
  
  /**
   * http response 拦截器
@@ -64,7 +74,15 @@ import './mock';
  
  export function post(url, data) {
    return new Promise((resolve, reject) => {
-     axios.post(url, data).then(
+     axios({
+      method: 'post',
+      url,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: qs.stringify(data)
+     })
+     .then(
        (response) => {
          //关闭进度条
          resolve(response.data);
@@ -75,7 +93,7 @@ import './mock';
      );
    });
  }
- 
+
  /**
   * 封装patch请求
   * @param url
