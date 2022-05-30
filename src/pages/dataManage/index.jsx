@@ -353,15 +353,10 @@ const Records = () => {
         }}
         scroll={{ x: 1500 }}
         expandable={
-            // {expandedRowRender: record => <p style={{ margin: 0 }}>诊断主诉：{record.description}</p>,}
-            // expandable
             {
-              expandRowByClick: true,
               // onExpand: getExpandData,
               expandedRowRender: ExpandedRowRender
             }
-            // 
-            // rowExpandable: record => record.description !== '',
           }
       />
     </Form>
